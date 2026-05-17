@@ -1,0 +1,9 @@
+## Interface: 120005
+## Title: GF Applicant Export
+## Notes: Export pending Premade Group Finder applicants as JSON for external screening
+## Author: avaren
+## Version: 0.1.2
+## SavedVariables: GFAEDB
+## IconTexture: Interface\Icons\INV_Misc_GroupLooking
+
+GFApplicantExport.lua
