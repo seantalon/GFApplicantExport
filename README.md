@@ -30,8 +30,9 @@ Reload your UI (`/reload`) or restart the client. You should see:
 
 ## Usage
 
-1. Create a listing in the Premade Group Finder (you must be hosting; the API
-   only exposes applicants for groups you advertise).
+1. Be in (or host) a group with an active Premade Group Finder listing. Any
+   group member can read the applicant list — you don't have to be the leader
+   or the one who advertised.
 2. Type `/gfae` (or `/applicantexport`) to open the export window. The JSON
    payload is built immediately, written to the EditBox, and auto-selected.
 3. Press **Ctrl+C** to copy. If you lose the selection (clicked elsewhere),
@@ -44,9 +45,6 @@ While the window is open, it auto-refreshes on:
   declined them.
 - `GROUP_ROSTER_UPDATE` — someone joined or left your party/raid, so the
   `group_members` snapshot stays current.
-
-You can keep the window floating on a second monitor and the JSON will track
-the live state.
 
 ## Output schema
 
@@ -140,6 +138,4 @@ for debugging; no PII is persisted.
 
 ## Credits
 
-Co-developed with [Claude](https://claude.com/claude-code) (Anthropic) —
-debugging the WoW EditBox quirks around `|K` tokens in particular would have
-taken much longer to track down solo.
+Co-developed with [Claude](https://claude.com/claude-code) (Anthropic).
