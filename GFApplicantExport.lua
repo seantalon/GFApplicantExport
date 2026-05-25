@@ -21,7 +21,7 @@
 --   "region": "US" | "EU" | "KR" | "TW" | "CN",
 --   "interface_version": 120005,
 --   "group_members": [
---     { "name": "Avaren", "class": "MAGE",
+--     { "name": "Avaren", "realm": "Stormrage", "class": "MAGE",
 --       "role": "TANK" | "HEALER" | "DAMAGER" | "NONE",
 --       "spec_id": <int> },         -- 0 when client has no cached spec
 --     ...
@@ -184,8 +184,15 @@ end
 local function CollectGroupMember(unit, members)
     local _, classToken = UnitClass(unit)
     if not classToken then return end  -- unit doesn't exist / out of range
+    local name, realm = UnitFullName(unit)
+    -- UnitFullName returns nil realm for same-realm players; substitute the
+    -- player's home realm so the consumer always has a realm to slug.
+    if not realm or realm == "" then
+        realm = GetNormalizedRealmName() or ""
+    end
     table.insert(members, {
-        name    = UnitName(unit) or "",
+        name    = name or "",
+        realm   = realm,
         class   = classToken,
         role    = UnitGroupRolesAssigned(unit) or "NONE",
         spec_id = GetUnitSpecID(unit),

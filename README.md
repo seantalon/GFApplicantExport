@@ -55,9 +55,9 @@ While the window is open, it auto-refreshes on:
   "region": "US",
   "interface_version": 120005,
   "group_members": [
-    { "name": "Avaren",   "class": "MAGE",  "role": "DAMAGER", "spec_id": 64 },
-    { "name": "Burno",    "class": "MONK",  "role": "TANK",    "spec_id": 0  },
-    { "name": "Zoranna",  "class": "SHAMAN","role": "HEALER",  "spec_id": 0  }
+    { "name": "Avaren",  "realm": "Stormrage",   "class": "MAGE",   "role": "DAMAGER", "spec_id": 64 },
+    { "name": "Burno",   "realm": "Tichondrius", "class": "MONK",   "role": "TANK",    "spec_id": 0  },
+    { "name": "Zoranna", "realm": "Khaz'goroth", "class": "SHAMAN", "role": "HEALER",  "spec_id": 0  }
   ],
   "applicants": [
     {
