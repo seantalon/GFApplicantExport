@@ -5,7 +5,9 @@ applicants — plus a snapshot of your current group — as JSON, ready to paste
 into an external screening tool that runs raider.io and Warcraft Logs checks
 against their characters.
 
-**Tested against:** WoW Midnight 12.0.5 (Interface 120005)
+**Targets:** WoW Midnight 12.1.0 (Interface 120100)
+**Last verified in-game:** 12.0.5 — the 12.1.0 bump is untested. Known gaps and
+follow-ups are tracked in [TODO.md](TODO.md).
 
 ## Install
 
@@ -53,7 +55,7 @@ While the window is open, it auto-refreshes on:
   "schema_version": 1,
   "exported_at": 1746950400,
   "region": "US",
-  "interface_version": 120005,
+  "interface_version": 120100,
   "group_members": [
     { "name": "Avaren",  "realm": "Stormrage",   "class": "MAGE",   "role": "DAMAGER", "spec_id": 64 },
     { "name": "Burno",   "realm": "Tichondrius", "class": "MONK",   "role": "TANK",    "spec_id": 0  },

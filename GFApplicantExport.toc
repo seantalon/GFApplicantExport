@@ -1,4 +1,4 @@
-## Interface: 120005
+## Interface: 120100
 ## Title: GF Applicant Export
 ## Notes: Export pending Premade Group Finder applicants as JSON for external screening
 ## Author: avaren
