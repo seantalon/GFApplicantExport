@@ -6,8 +6,8 @@ into an external screening tool that runs raider.io and Warcraft Logs checks
 against their characters.
 
 **Targets:** WoW Midnight 12.1.0 (Interface 120100)
-**Last verified in-game:** 12.0.5 — the 12.1.0 bump is untested. Known gaps and
-follow-ups are tracked in [TODO.md](TODO.md).
+**Last verified in-game:** 12.1.0 (build 12.1.0.69299) — live export confirmed
+working. Known gaps and follow-ups are tracked in [TODO.md](TODO.md).
 
 ## Install
 

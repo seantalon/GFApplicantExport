@@ -6,9 +6,11 @@ Midnight (12.0) introduced a "secret value" system that lets the client hand
 addons opaque values they can't inspect or serialize. The guard globals are
 `canaccessvalue()`, `issecretvalue()`, and `issecrettable()`.
 
-This addon uses **none** of them. That was fine through 12.0.5 and the export
-worked normally, so this is a latent risk, not a live bug — Blizzard has not
-(yet) flagged the applicant fields we read.
+This addon uses **none** of them. That was fine through 12.0.5, and a live
+export on 12.1.0 (2026-08-15) returned a full applicant row — name (including
+non-ASCII), class, localized class, level, and assigned role all intact. So
+this is a latent risk, not a live bug: Blizzard has not (yet) flagged the
+applicant fields we read.
 
 Why it matters more here than for most addons: a tooltip addon that reads a
 secret just renders a blank, but this addon *serializes*. The paths that would
@@ -65,10 +67,34 @@ would mean a new `faction` field and a `schema_version` bump to 2, which the
 downstream Python screening tool would need to accept. Only worth doing if
 faction is actually useful for screening.
 
+## Watch: `display_order` may just mirror `app_id`
+
+In the 12.1.0 export below, a lone applicant came back with `display_order: 64`
+and `app_id: 64` — identical. The README documents `display_order` as
+preserving PGF sort order, which for a single applicant should be `1`.
+
+Unconfirmed either way: no other addon installed here reads
+`appInfo.displayOrderID`, so there's no call site to compare against.
+
+**How to settle it:** export with 3+ pending applicants and look at the values.
+If they come out `1, 2, 3` the field works as documented. If they mirror
+`app_id`, then sorting on `display_order` downstream is meaningless and the
+consumer should fall back to `app_id` or arrival order. Harmless until then —
+nothing reads the field except the screening tool's sort.
+
 ## Verification status
 
-The 12.1.0 TOC bump (`120005` → `120100`) is unverified in-game. It was derived
-from `World of Warcraft/.build.info` (client `12.1.0.69299`) and cross-checked
-against installed addons already shipping `120100` (RaiderIO, !WilduTools).
+The 12.1.0 TOC bump (`120005` → `120100`) is **confirmed working in-game** as of
+2026-08-15. A live `/gfae` export on client `12.1.0.69299` produced valid JSON
+with a complete applicant row and `"interface_version": 120100`, which
+`GetBuildInfo()` reads from the running client — independent confirmation the
+bump was correct.
+
 The `GetApplicantMemberInfo` return order was confirmed against three
-independent call sites in RaiderIO and ArchonTooltip.
+independent call sites in RaiderIO and ArchonTooltip; `pvpItemLevel` at
+position 13 matches `ArchonTooltip/Tooltip.lua:852`.
+
+Note for future readers: `ilvl` and `pvp_ilvl` came back equal (both `276`) in
+that export. Not a bug — `pvpItemLevel` matches equipped ilvl for a character
+with no PvP gear, and the row was internally coherent (level 90 with
+`dungeon_score: 0` and `honor_level: 0`, i.e. a fresh alt).
