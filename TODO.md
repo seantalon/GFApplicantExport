@@ -84,6 +84,14 @@ nothing reads the field except the screening tool's sort.
 
 ## Verification status
 
+**12.1.5 (pending in-game check):** TOC bumped `120100` → `120105` on
+2026-10-13 against client `12.1.5.70340`. No Lua changes. The `>= 120105`
+gates in updated addons (BigWigs, Chattynator, Platynator, NSRT) cover new
+encounters, auras, and chat only, with nothing touching `C_LFGList` or the spec
+APIs used here. RaiderIO (updated 2026-10-13) still destructures
+`GetApplicantMemberInfo` the same way. To confirm: run `/gfae` with a pending
+applicant and check for `"interface_version": 120105`.
+
 The 12.1.0 TOC bump (`120005` → `120100`) is **confirmed working in-game** as of
 2026-08-15. A live `/gfae` export on client `12.1.0.69299` produced valid JSON
 with a complete applicant row and `"interface_version": 120100`, which
@@ -98,3 +106,13 @@ Note for future readers: `ilvl` and `pvp_ilvl` came back equal (both `276`) in
 that export. Not a bug — `pvpItemLevel` matches equipped ilvl for a character
 with no PvP gear, and the row was internally coherent (level 90 with
 `dungeon_score: 0` and `honor_level: 0`, i.e. a fresh alt).
+
+## Stale `120005` references in the Lua
+
+`GFApplicantExport.lua` still says Interface `120005` in three places: the
+header comment (`:4`), the example payload (`:22`), and the fallback in the
+interface-version helper (`:152`, `return tocVersion or 120005`). None of
+these affect behavior, because the exported `interface_version` comes from
+`GetBuildInfo()` and the fallback only runs if that returns nothing. Fixing
+them is cosmetic: either refresh the numbers each patch or drop them from
+the comments.

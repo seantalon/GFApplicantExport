@@ -5,7 +5,7 @@ applicants — plus a snapshot of your current group — as JSON, ready to paste
 into an external screening tool that runs raider.io and Warcraft Logs checks
 against their characters.
 
-**Targets:** WoW Midnight 12.1.0 (Interface 120100)
+**Targets:** WoW Midnight 12.1.5 (Interface 120105)
 **Last verified in-game:** 12.1.0 (build 12.1.0.69299) — live export confirmed
 working. Known gaps and follow-ups are tracked in [TODO.md](TODO.md).
 
