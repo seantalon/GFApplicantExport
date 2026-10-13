@@ -2,7 +2,7 @@
 ## Title: GF Applicant Export
 ## Notes: Export pending Premade Group Finder applicants as JSON for external screening
 ## Author: avaren
-## Version: 0.1.2
+## Version: @project-version@
 ## SavedVariables: GFAEDB
 ## IconTexture: Interface\Icons\INV_Misc_GroupLooking
 

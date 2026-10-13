@@ -11,7 +11,22 @@ working. Known gaps and follow-ups are tracked in [TODO.md](TODO.md).
 
 ## Install
 
-Drop the `GFApplicantExport` folder into:
+### WowUp (recommended)
+
+In WowUp, go to **Get Addons → Install from URL** and paste:
+
+```
+https://github.com/seantalon/GFApplicantExport
+```
+
+WowUp tracks this repo's GitHub Releases and picks up new versions
+automatically.
+
+### Manual
+
+Download the zip from the latest
+[release](https://github.com/seantalon/GFApplicantExport/releases) and
+extract the `GFApplicantExport` folder into:
 
 ```
 World of Warcraft\_retail_\Interface\AddOns\
@@ -27,8 +42,25 @@ Final path should look like:
 Reload your UI (`/reload`) or restart the client. You should see:
 
 ```
-[GF Applicant Export] v0.1.2 loaded. Type /gfae to open.
+[GF Applicant Export] v0.1.3 loaded. Type /gfae to open.
 ```
+
+(Running straight from a git clone shows `v@project-version@` instead; the
+version is filled in when a release is packaged.)
+
+## Releasing
+
+Push a tag; the GitHub Action in `.github/workflows/release.yml` runs the
+[BigWigs packager](https://github.com/BigWigsMods/packager), which builds the
+zip and publishes the GitHub Release:
+
+```
+git tag 0.1.4
+git push origin 0.1.4
+```
+
+Use bare version numbers for tags (no `v` prefix), since the load message
+already adds one.
 
 ## Usage
 
